@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Artificial Vision</string>
+    <string name="Login">Login</string>
+    <string name="Ingresar">Enter</string>
+    <string name="Usuario">Username</string>
+    <string name="Contrasena">Password</string>
+    <string name="tomarFoto">Take Picture</string>
+    <string name="analizar">Process Picture</string>
+</resources>

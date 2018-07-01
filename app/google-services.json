@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "940194239518",
+    "firebase_url": "https://appmovil-a261a.firebaseio.com",
+    "project_id": "appmovil-a261a",
+    "storage_bucket": "appmovil-a261a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940194239518:android:743e21fc8bb7ead3",
+        "android_client_info": {
+          "package_name": "com.example.daro.visionartificial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "940194239518-e56rqtdva9s3e7hmh69butltf9mek64u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6rCXLZQA4mYTlAqX1ra2yfSEoI_AfOp4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940194239518:android:cdc77b95c125fdd6",
+        "android_client_info": {
+          "package_name": "com.example.usrgam.ejemplo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "940194239518-e56rqtdva9s3e7hmh69butltf9mek64u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6rCXLZQA4mYTlAqX1ra2yfSEoI_AfOp4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Vision Artificial</string>
+    <string name="Login">Login</string>
+    <string name="Ingresar">Ingresar</string>
+    <string name="Usuario">Usuario</string>
+    <string name="Contrasena">Contraseña</string>
+    <string name="title_activity_principal_navegacion">PrincipalNavegacion</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="tomarFoto">Tomar Foto</string>
+    <string name="analizar">Procesar Foto</string>
+</resources>

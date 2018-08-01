@@ -19,15 +19,6 @@ import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
 import android.widget.Toast
 
-
-
-
-
-
-
-
-
-
 class PrincipalNavegacion : AppCompatActivity() {
 
 
@@ -37,6 +28,7 @@ class PrincipalNavegacion : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
+
                 message.setText(R.string.title_home)
                 return@OnNavigationItemSelectedListener true
             }

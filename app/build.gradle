@@ -34,6 +34,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.0'
     implementation 'com.google.firebase:firebase-ml-vision:16.0.0'
 
+    implementation 'com.github.kittinunf.fuel:fuel-android:1.13.0'
+    implementation 'com.beust:klaxon:3.0.1'
+    implementation 'com.tapadoo.android:alerter:2.0.6'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -7,7 +7,13 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import android.R.attr.key
-
+import android.R.id.edit
+import android.content.Context
+import android.content.SharedPreferences
+import android.content.Context.MODE_PRIVATE
+import android.graphics.Color
+import com.tapadoo.alerter.Alerter
+import es.dmoral.toasty.Toasty
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,6 +22,8 @@ class MainActivity : AppCompatActivity() {
     var estadoIngresoSistema = 0
     lateinit var valorIdUser:String
     lateinit var usuarioActual:String
+
+    var usuario: Usuario? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     fun irActividadRegistroUsuario(){
         val intent = Intent(this,RegistroUsuarioActivity::class.java)
+        Toasty.info(this, "Completa el registro para usar la app", Toast.LENGTH_SHORT, true).show()
         startActivity(intent)
     }
 
@@ -61,14 +70,29 @@ class MainActivity : AppCompatActivity() {
         //Toast.makeText(this,"VALOR: $estadoIngresoSistema",Toast.LENGTH_SHORT).show()
 
         if (estadoIngresoSistema==1){
-            Toast.makeText(this,"Bienvenido al Sistema: $usuarioActual $valorIdUser", Toast.LENGTH_SHORT).show()
+            Toasty.success(this, "Bienvenido al Sistema: $usuarioActual", Toast.LENGTH_LONG, true).show()
             val intent = Intent(this, NavigationActivity::class.java)
 
+
+            /***ENVIO EL VALOR DEL ID DEL USUARIO AL FRAGMENTO PROFILE USER***/
+            val prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE)
+            val editor = prefs.edit()
+            editor.putString("idUsuarioActual", valorIdUser)
+            editor.commit()
 
 
             startActivity(intent)
         }else{
-            Toast.makeText(this,"Datos o Usuario Incorrectos", Toast.LENGTH_SHORT).show()
+
+            Alerter.create(this)
+                    .setTitle("Datos o Usuario Incorrectos")
+                    .setText("Verifica tus datos e intenta nuevamente")
+                    .setBackgroundColorRes(R.color.error_color_material)
+                    .enableSwipeToDismiss()
+                    .show()
+
+            txtUsername.setText("")
+            txtPassword.setText("")
         }
 
     }

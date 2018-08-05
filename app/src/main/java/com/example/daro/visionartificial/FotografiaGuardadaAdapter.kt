@@ -1,27 +1,18 @@
 package com.example.daro.visionartificial
 
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.util.Base64
 import android.view.*
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import com.ceylonlabs.imageviewpopup.ImagePopup
-import es.dmoral.toasty.Toasty
 
-
-class FotografiaAnalisisAdapter(private val fotografiaAnalisisList: List<FotografiaTexto>) :  RecyclerView.Adapter<FotografiaAnalisisAdapter.MyViewHolder>(){
+class FotografiaGuardadaAdapter(private val fotografiaAnalisisList: List<FotografiaTexto>) :  RecyclerView.Adapter<FotografiaGuardadaAdapter.MyViewHolder>(){
 
     lateinit var myBitmapAgain: Bitmap
     var picAnalizada: FotografiaTexto? = null
-
-
-
 
     private var position: Int = 0
 
@@ -41,7 +32,7 @@ class FotografiaAnalisisAdapter(private val fotografiaAnalisisList: List<Fotogra
         var fotografiaProcesada : ImageView
 
 
-        var detalles: Button
+        //var detalles: Button
 
         lateinit var fotograffiaAnalisis: FotografiaTexto
 
@@ -50,7 +41,7 @@ class FotografiaAnalisisAdapter(private val fotografiaAnalisisList: List<Fotogra
 
             fotografiaProcesada = view.findViewById(R.id.imageViewDato)
 
-            detalles = view.findViewById(R.id.btnDetalles) as Button
+            //detalles = view.findViewById(R.id.btnDetalles) as Button
 
             view.setOnCreateContextMenuListener(this)
         }
@@ -58,13 +49,13 @@ class FotografiaAnalisisAdapter(private val fotografiaAnalisisList: List<Fotogra
         override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
             /*menu?.add(Menu.NONE, R.id.item_menu_compartir, Menu.NONE, R.string.menu_share)*/
             //menu?.add(Menu.NONE, R.id.item_menu_editar, Menu.NONE, "Editar")
-           //menu?.add(Menu.NONE, R.id.item_menu_eliminar, Menu.NONE, "Eliminar")
+             menu?.add(Menu.NONE, R.id.item_menu_eliminar, Menu.NONE, "Eliminar")
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.reciclerview_showalldata_layout, parent, false)
+                .inflate(R.layout.reyclerview_busquedas_layout, parent, false)
 
         return MyViewHolder(itemView)
 
@@ -82,25 +73,12 @@ class FotografiaAnalisisAdapter(private val fotografiaAnalisisList: List<Fotogra
         holder.fotografiaProcesada.setImageBitmap(myBitmapAgain)
 
 
-        holder.detalles.setOnClickListener{
-            v: View ->
-
-            //Toasty.info(v.context, "Completa el registro para usar la app", Toast.LENGTH_SHORT, true).show()
-            var imagePopup = ImagePopup(v.context)
-            imagePopup.setWindowHeight(800) // Optional
-            imagePopup.setWindowWidth(800) // Optional
-            imagePopup.setBackgroundColor(Color.BLACK) // Optional
-            imagePopup.setFullScreen(true) // Optional
-            imagePopup.setHideCloseIcon(true)  // Optional
-            imagePopup.setImageOnClickClose(true)  // Optional*/
-            imagePopup.initiatePopup(holder.fotografiaProcesada.getDrawable())
-            imagePopup.viewPopup()
-
-
-            /*val intent = Intent(v.context, ProfileUserFragment::class.java)
+       /* holder.detalles.setOnClickListener{
+            /*v: View ->
+            val intent = Intent(v.context, ProfileUserFragment::class.java)
             //intent.putExtra("detallesPokemon", pokemonN)
             v.context.startActivity(intent)*/
-        }
+        }*/
         holder.itemView.setOnLongClickListener {
             setPosition(holder.adapterPosition)
             false

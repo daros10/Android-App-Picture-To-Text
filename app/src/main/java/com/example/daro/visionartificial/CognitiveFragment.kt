@@ -1,8 +1,10 @@
 package com.example.daro.visionartificial
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.app.Fragment
@@ -16,14 +18,12 @@ import android.widget.Toast
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.text.FirebaseVisionText
-import kotlinx.android.synthetic.main.activity_principal_navegacion.*
 import kotlinx.android.synthetic.main.fragment_cognitive.*
 import java.io.ByteArrayOutputStream
 import android.text.SpannableStringBuilder
-import android.text.Editable
-import android.content.Intent.getIntent
-import android.content.Intent.getIntent
-import android.content.Intent.getIntent
+import android.widget.TextView
+import com.tapadoo.alerter.Alerter
+import es.dmoral.toasty.Toasty
 
 class CognitiveFragment : Fragment(), View.OnClickListener  {
 
@@ -34,16 +34,17 @@ class CognitiveFragment : Fragment(), View.OnClickListener  {
     lateinit var myBase64Image:String
     lateinit var myBitmapAgain:Bitmap
     private lateinit var imageBitmap: Bitmap
-
     lateinit var resultadoFinalTexto :String
 
 
-
-
+    lateinit var idUsuarioActual:String
 
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+
+
 
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_cognitive, container, false)
@@ -52,15 +53,18 @@ class CognitiveFragment : Fragment(), View.OnClickListener  {
         buttonAnalizar = rootView.findViewById(R.id.btnAnalizar) as Button
         buttonGuardaDatos = rootView.findViewById(R.id.btnGuardarAnalisis) as Button
 
+
         buttonTakePicture.setOnClickListener(this)
         buttonAnalizar.setOnClickListener(this)
         buttonGuardaDatos.setOnClickListener(this)
 
-
+        val prefs = activity!!.getSharedPreferences("Preferences", 0)
+        idUsuarioActual = prefs.getString("idUsuarioActual", "")
 
 
         return rootView
     }
+
 
 
     override fun onClick(v: View) {
@@ -103,7 +107,7 @@ class CognitiveFragment : Fragment(), View.OnClickListener  {
 
             imageViewFotografia.setImageBitmap(myBitmapAgain)
 
-            Toast.makeText(activity,"Dentro de camara: $myBase64Image", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(activity,"Dentro de camara: $myBase64Image", Toast.LENGTH_SHORT).show()
 
         }
 
@@ -166,26 +170,37 @@ class CognitiveFragment : Fragment(), View.OnClickListener  {
     }
 
     fun guardarDatosAnalisis(){
-        var valorTextoProcesado = txtResultadoProcesamiento.text.toString().replace("\n","")
-        var imagenAProcesar = myBase64Image
 
-        //Toast.makeText(activity,"texto: $valorTextoProcesado", Toast.LENGTH_SHORT).show()
-        //Toast.makeText(activity,"image: $imagenAProcesar", Toast.LENGTH_SHORT).show()
+        if (txtResultadoProcesamiento.text.toString().isEmpty()){
 
-        var fotografiaTexto = FotografiaTexto(valorTextoProcesado,imagenAProcesar,1)
-        DatabaseFotografiaTexto.insertarAnalisis(fotografiaTexto)
+            //Toast.makeText(context,"Primero debes genera un analisis",Toast.LENGTH_LONG).show()
+            Toasty.error(rootView.context ,"Primero debes generar un analisis",Toast.LENGTH_LONG,true).show()
+
+        }else{
+
+            var valorTextoProcesado = txtResultadoProcesamiento.text.toString().replace("\n","")
+            var imagenAProcesar = myBase64Image
+
+            //Toast.makeText(activity,"texto: $valorTextoProcesado", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(activity,"image: $imagenAProcesar", Toast.LENGTH_SHORT).show()
+
+            var fotografiaTexto = FotografiaTexto(valorTextoProcesado,imagenAProcesar,idUsuarioActual.toInt())
+            DatabaseFotografiaTexto.insertarAnalisis(fotografiaTexto)
+
+            Alerter.create(activity!!)
+                    .setTitle("Datos Registrados con Exito")
+                    .setIcon(R.drawable.alerter_ic_face)
+                    .setBackgroundColorRes(R.color.alerter_default_success_background)
+                    .setIconColorFilter(0) // Optional - Removes white tint
+                    .show()
+
+            txtResultadoProcesamiento.setText("")
 
 
-
-        Toast.makeText(activity,"SAVEDDD", Toast.LENGTH_SHORT).show()
+        }
 
 
     }
-
-
-
-
-
 
 
 

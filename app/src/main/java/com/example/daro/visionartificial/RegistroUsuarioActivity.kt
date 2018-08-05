@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.tapadoo.alerter.Alerter
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_registro_usuario.*
 
 class RegistroUsuarioActivity : AppCompatActivity() {
@@ -32,7 +34,12 @@ class RegistroUsuarioActivity : AppCompatActivity() {
 
         if (txtUsernameRegistro.text.toString().isEmpty() || txtPasswordRegistro.text.toString().isEmpty()){
 
-            Toast.makeText(this,"CAMPOS VACIOS",Toast.LENGTH_SHORT).show()
+            Alerter.create(this)
+                    .setTitle("Campos Vacios")
+                    .setText("Completa la informacion de todos los campos")
+                    .setBackgroundColorRes(R.color.error_color_material)
+                    .enableSwipeToDismiss()
+                    .show()
 
         }else{
 
@@ -42,10 +49,9 @@ class RegistroUsuarioActivity : AppCompatActivity() {
             var usuario = Usuario(0,nombreUsuario, contrasenaUsuario)
             DatabaseUsuario.insertarUsuario(usuario)
 
-            Toast.makeText(this,"Datos Registrados",Toast.LENGTH_SHORT).show()
+            Toasty.success(this, "Datos registrados", Toast.LENGTH_LONG, true).show()
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
-
 
         }
 

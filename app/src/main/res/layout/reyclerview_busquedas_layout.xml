@@ -11,10 +11,9 @@
     <TextView
         android:id="@+id/txtDato1"
         android:layout_width="173dp"
-        android:layout_height="83dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="10dp"
+        android:layout_height="91dp"
+        android:layout_alignBottom="@+id/imageViewDato"
+        android:layout_alignEnd="@+id/divider"
         android:textAlignment="center"
         android:textStyle="bold" />
 
@@ -27,24 +26,23 @@
         android:scaleType="centerCrop"
         app:srcCompat="@mipmap/ic_launcher" />
 
-    <Button
-        android:id="@+id/btnDetalles"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageViewDato"
-        android:layout_marginStart="16dp"
-        android:layout_toEndOf="@+id/imageViewDato"
-        android:text="@string/detalles" />
-
     <View
         android:id="@+id/divider"
         android:layout_width="353dp"
         android:layout_height="1dp"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="140dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="145dp"
         android:background="@color/colorPrimaryDark"
         android:padding="15dp" />
+
+    <TextView
+        android:id="@+id/textViewTitulo"
+        android:layout_width="171dp"
+        android:layout_height="37dp"
+        android:layout_alignStart="@+id/txtDato1"
+        android:layout_alignTop="@+id/imageViewDato"
+        android:text="Transcripción:"
+        android:textStyle="bold" />
 
 </RelativeLayout>

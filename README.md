@@ -1,7 +1,7 @@
-#Proyecto Final Aplicaciones Moviles 
+# Proyecto Final Aplicaciones Moviles 
 El presente proyecto fue desarrollado para la materia de aplicaciones moviles.
 
-##Descipción del Aplicativo
+## Descipción del Aplicativo
 La aplicación fue desarrollada para crear un tipo Pinterest, el cual permite capturar al usuario una fotografia 
 y transformala a texto. Cada usuario tiene su perfil y maneja las fotografias que desea conservar.
 El aplicativo hace uso del servidor Sails para manejar la data con peticiones via internet.
